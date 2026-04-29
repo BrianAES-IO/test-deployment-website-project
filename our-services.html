@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="AESURUS - Enterprise Services & Cloud Architecture">
+    <meta name="author" content="AESURUS">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>AESURUS | The Arsenal</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css">
+    
+    <link rel="stylesheet" href="assets/css/aesurus-theme.css">
+
+    <style>
+        body { background-color: #f8fafc; color: #333; overflow-x: hidden; }
+
+        /* --- SERVICES HERO --- */
+        .services-hero {
+            position: relative; height: 60vh; min-height: 500px; background-color: #050505; 
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+            border-bottom: 3px solid #0d6efd;
+        }
+        .hero-bg-lines {
+            position: absolute; inset: 0; opacity: 0.2;
+            background: repeating-linear-gradient( 45deg, transparent, transparent 10px, #0d6efd 10px, #0d6efd 11px );
+        }
+        .services-hero-content { position: relative; z-index: 10; text-align: center; max-width: 900px; padding: 0 20px; }
+        .services-hero-title { color: #fff; font-size: 64px; font-weight: 900; letter-spacing: 1px; margin-bottom: 20px; text-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .services-hero-subtitle { color: #d1d5db; font-size: 24px; font-weight: 300; line-height: 1.6; }
+
+        /* --- PILLAR CARDS --- */
+        .pillars-section { padding: 100px 0; background: #fff; position: relative; z-index: 20; margin-top: -60px; }
+        .pillar-card {
+            background: #fff; padding: 50px 40px; border-radius: 12px; border: 1px solid #e2e8f0; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05); height: 100%; transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .pillar-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #0d6efd; transition: width 0.3s ease; z-index: 0;
+        }
+        .pillar-card:hover { transform: translateY(-10px); box-shadow: 0 30px 50px rgba(13, 110, 253, 0.1); border-color: #0d6efd; }
+        .pillar-card:hover::before { width: 100%; opacity: 0.03; }
+        .pillar-content { position: relative; z-index: 1; }
+        .pillar-icon { font-size: 48px; color: #0d6efd; margin-bottom: 25px; }
+        .pillar-title { font-size: 28px; font-weight: 800; color: #0a0a0a; margin-bottom: 15px; }
+        .pillar-desc { font-size: 18px; color: #4b5563; line-height: 1.6; margin: 0; }
+
+        /* --- ALTERNATING FEATURE ROWS --- */
+        .feature-row { display: flex; align-items: center; min-height: 600px; }
+        .feature-row.dark { background: #050505; color: #fff; border-bottom: 1px solid #222;}
+        .feature-row.light { background: #f8fafc; color: #0a0a0a; border-bottom: 1px solid #e2e8f0;}
+        
+        .f-content { padding: 100px 80px; flex: 1; }
+        .f-tagline { font-size: 18px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
+        .dark .f-tagline { color: #ff4500; }
+        .light .f-tagline { color: #0d6efd; }
+        .f-title { font-size: 48px; font-weight: 800; margin-bottom: 25px; line-height: 1.1; }
+        .f-desc { font-size: 22px; line-height: 1.7; margin-bottom: 40px; }
+        .dark .f-desc { color: #a1a1aa; }
+        .light .f-desc { color: #4b5563; }
+        
+        .f-visual { flex: 1; display: flex; justify-content: center; align-items: center; padding: 100px; position: relative; overflow: hidden; height: 100%; }
+        .visual-icon { font-size: 250px; opacity: 0.1; position: absolute; }
+        .dark .visual-icon { color: #0d6efd; }
+        .light .visual-icon { color: #ff4500; }
+        
+        /* Interactive Data Points inside visuals */
+        .f-data-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 30px; border-radius: 12px; position: relative; z-index: 2; max-width: 400px; }
+        .light .f-data-box { background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .data-stat { font-size: 48px; font-weight: 900; margin-bottom: 5px; line-height: 1; }
+        .dark .data-stat { color: #0d6efd; }
+        .light .data-stat { color: #ff4500; }
+        .data-label { font-size: 18px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- METHODOLOGY (PROCESS) --- */
+        .methodology-section { padding: 120px 0; background: #fff; text-align: center; }
+        .method-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 60px; position: relative; }
+        /* Connecting Line */
+        .method-grid::before { content: ''; position: absolute; top: 50px; left: 10%; right: 10%; height: 2px; background: #e2e8f0; z-index: 1; }
+        .method-step { position: relative; z-index: 2; }
+        .m-num { width: 100px; height: 100px; background: #f8fafc; border: 2px solid #0d6efd; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 800; color: #0d6efd; margin: 0 auto 25px auto; box-shadow: 0 0 0 10px #fff; }
+        .m-title { font-size: 24px; font-weight: 800; color: #0a0a0a; margin-bottom: 15px; }
+        .m-desc { font-size: 16px; color: #4b5563; line-height: 1.6; }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .f-content, .f-visual { padding: 60px 40px; }
+        }
+        @media (max-width: 992px) {
+            .feature-row { flex-direction: column !important; }
+            .f-content, .f-visual { width: 100%; padding: 60px 30px; }
+            .f-visual { min-height: 400px; }
+            .method-grid { grid-template-columns: repeat(2, 1fr); gap: 50px; }
+            .method-grid::before { display: none; }
+        }
+        @media (max-width: 767px) {
+            .services-hero-title { font-size: 42px; }
+            .services-hero-subtitle { font-size: 20px; }
+            .f-title { font-size: 36px; }
+            .method-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+  </head>
+
+<body>
+
+ <header class="header-area header-sticky background-header" style="background-color: #0a0a0a !important;">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <a href="index.html" class="logo">
+                          <div style="display: flex; align-items: center; height: 110px;">
+                              <img src="assets/images/logo-blue.png" alt="AESURUS Logo" class="header-logo" style="max-height: 65px; border-radius: 8px;">
+                          </div>
+                      </a>
+                      <ul class="nav">
+                          <li><a href="index.html" class="active">Home</a></li>
+                          <li><a href="our-services.html">Services</a></li>
+                          <li><a href="cybersecurity.html">Cybersecurity</a></li>
+                          <li><a href="the-enclave.html">The Enclave</a></li>
+                          <li><a href="contact-us.html">Initiate Protocol</a></li> 
+                      </ul>        
+                      <a class='menu-trigger'><span>Menu</span></a>
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <div class="services-hero">
+      <div class="hero-bg-lines"></div>
+      <div class="services-hero-content">
+          <h1 class="services-hero-title">The Arsenal.</h1>
+          <p class="services-hero-subtitle">We do not provide standard IT support. We design, deploy, and defend enterprise-grade cloud architecture and zero-trust security frameworks. Explore our core capabilities below.</p>
+      </div>
+  </div>
+
+  <section class="pillars-section">
+      <div class="container">
+          <div class="row g-4">
+              <div class="col-lg-3 col-md-6">
+                  <div class="pillar-card">
+                      <div class="pillar-content">
+                          <i class="fas fa-shield-virus pillar-icon"></i>
+                          <h4 class="pillar-title">Cyber Warfare</h4>
+                          <p class="pillar-desc">Elite Managed Detection & Response (MDR), threat hunting, and an ironclad $1M Ransomware Warranty.</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                  <div class="pillar-card">
+                      <div class="pillar-content">
+                          <i class="fas fa-network-wired pillar-icon"></i>
+                          <h4 class="pillar-title">Managed Cloud</h4>
+                          <p class="pillar-desc">Complete architectural dominance over AWS, Azure, Google Cloud, Oracle, and Veeam ecosystems.</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                  <div class="pillar-card">
+                      <div class="pillar-content">
+                          <i class="fas fa-lock pillar-icon"></i>
+                          <h4 class="pillar-title">The Enclave</h4>
+                          <p class="pillar-desc">100% air-gapped network isolation and zero-trust vaults ensuring absolute data sovereignty.</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                  <div class="pillar-card">
+                      <div class="pillar-content">
+                          <i class="fas fa-file-signature pillar-icon"></i>
+                          <h4 class="pillar-title">Compliance</h4>
+                          <p class="pillar-desc">vCISO advisory, rigorous JDPA alignment, and penetration testing to ensure regulatory invincibility.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="feature-row dark">
+      <div class="f-content">
+          <div class="f-tagline">AESURUS X-Ops MDR</div>
+          <h2 class="f-title">Total Security. Financially Guaranteed.</h2>
+          <p class="f-desc">A firewall is not enough. You need human threat hunters actively seeking out adversaries. We deploy military-grade endpoint protection and back it with a $1,000,000 Ransomware Warranty. We ensure that when the worst happens, you are financially and operationally bulletproof.</p>
+          <a href="cybersecurity.html" class="btn" style="background: #ff4500; color: #fff; padding: 15px 35px; border-radius: 5px; font-size: 18px; font-weight: 700; text-transform: uppercase;">Explore Cybersecurity</a>
+      </div>
+      <div class="f-visual">
+          <i class="fas fa-crosshairs visual-icon"></i>
+          <div class="f-data-box text-center">
+              <div class="data-stat">38 Min</div>
+              <div class="data-label" style="color: #a1a1aa;">Avg Threat Closure Time</div>
+          </div>
+      </div>
+  </section>
+
+  <section class="feature-row light" style="flex-direction: row-reverse;">
+      <div class="f-content">
+          <div class="f-tagline">Unified Infrastructure</div>
+          <h2 class="f-title">Architect. Optimize. Dominate.</h2>
+          <p class="f-desc">Stop wasting engineering hours managing complex infrastructure. Whether you need seamless multi-cloud migrations, FinOps cost optimization on AWS, or strict governance over your Microsoft 365 tenant, our Network Operations Center handles it seamlessly.</p>
+          <a href="managed-services.html" class="btn" style="background: #0d6efd; color: #fff; padding: 15px 35px; border-radius: 5px; font-size: 18px; font-weight: 700; text-transform: uppercase;">Explore Managed Cloud</a>
+      </div>
+      <div class="f-visual">
+          <i class="fas fa-server visual-icon"></i>
+          <div class="f-data-box text-center">
+              <div class="data-stat">99.999%</div>
+              <div class="data-label" style="color: #4b5563;">Uptime Guarantee (SLA)</div>
+          </div>
+      </div>
+  </section>
+
+  <section class="feature-row dark">
+      <div class="f-content">
+          <div class="f-tagline">Absolute Sovereignty</div>
+          <h2 class="f-title">The Enclave Protocol.</h2>
+          <p class="f-desc">For organizations that cannot afford compromise. The Enclave is a bespoke, 100% air-gapped zero-trust vault. It physically isolates your most critical data, rendering it immune to remote ransomware attacks and shielding it from foreign jurisdictional subpoenas.</p>
+          <a href="the-enclave.html" class="btn" style="background: transparent; color: #fff; border: 2px solid #0d6efd; padding: 15px 35px; border-radius: 5px; font-size: 18px; font-weight: 700; text-transform: uppercase;">Discover The Enclave</a>
+      </div>
+      <div class="f-visual">
+          <i class="fas fa-fingerprint visual-icon"></i>
+          <div class="f-data-box text-center">
+              <div class="data-stat">Zero</div>
+              <div class="data-label" style="color: #a1a1aa;">Implicit Trust Granted</div>
+          </div>
+      </div>
+  </section>
+
+  <section class="feature-row light" style="flex-direction: row-reverse;">
+      <div class="f-content">
+          <div class="f-tagline">Advisory & Governance</div>
+          <h2 class="f-title">Regulatory Invincibility.</h2>
+          <p class="f-desc">Data privacy laws are evolving rapidly. Our vCISO (Virtual Chief Information Security Officer) services align your enterprise directly with the Jamaica Data Protection Act (JDPA), HIPAA, and SOC2 frameworks. We perform ethical hacking and penetration tests to ensure you pass every audit.</p>
+          <a href="contact-us.html" class="btn" style="background: #0a0a0a; color: #fff; padding: 15px 35px; border-radius: 5px; font-size: 18px; font-weight: 700; text-transform: uppercase;">Request Compliance Audit</a>
+      </div>
+      <div class="f-visual">
+          <i class="fas fa-file-contract visual-icon"></i>
+          <div class="f-data-box text-center">
+              <div class="data-stat">100%</div>
+              <div class="data-label" style="color: #4b5563;">JDPA Audit Readiness</div>
+          </div>
+      </div>
+  </section>
+
+  <section class="methodology-section">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12">
+                  <h6 style="color: #0d6efd; font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">The AESURUS Methodology</h6>
+                  <h2 style="font-size: 52px; font-weight: 800; color: #0a0a0a; margin-top: 15px;">How We Engage.</h2>
+              </div>
+          </div>
+          
+          <div class="method-grid">
+              <div class="method-step">
+                  <div class="m-num">01</div>
+                  <h4 class="m-title">Audit</h4>
+                  <p class="m-desc">We conduct a ruthless, top-to-bottom assessment of your current infrastructure, identifying vulnerabilities, digital waste, and compliance gaps.</p>
+              </div>
+              <div class="method-step">
+                  <div class="m-num">02</div>
+                  <h4 class="m-title">Architect</h4>
+                  <p class="m-desc">Our engineers design a bespoke blueprint, selecting the exact mix of cloud resources and zero-trust security tools needed to meet your goals.</p>
+              </div>
+              <div class="method-step">
+                  <div class="m-num">03</div>
+                  <h4 class="m-title">Deploy</h4>
+                  <p class="m-desc">Executed with military precision. We migrate your data and implement the new architecture seamlessly to ensure zero operational downtime.</p>
+              </div>
+              <div class="method-step">
+                  <div class="m-num">04</div>
+                  <h4 class="m-title">Defend</h4>
+                  <p class="m-desc">The AESURUS X-Ops team takes over, providing 24/7 active threat hunting, continuous optimization, and guaranteed financial resilience.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="sleek-section" style="background-color: #0d6efd; padding: 100px 0;">
+      <div class="container text-center">
+          <h2 style="font-size: 56px; font-weight: 800; color: #fff; margin-bottom: 20px;">Take Command of Your Data.</h2>
+          <p style="color: #e0e7ff; font-size: 26px; margin-bottom: 40px;">Initiate protocol today to secure a confidential architecture review.</p>
+          <a href="contact-us.html" class="btn" style="background: #050505; color: #fff; padding: 20px 50px; border-radius: 8px; font-size: 22px; font-weight: 700; letter-spacing: 1px;">Enter Command Center</a>
+      </div>
+  </section>
+
+  <footer style="background-color: #050505; text-align: center; padding: 40px 0; border-top: 2px solid #222;">
+    <div class="container">
+      <p style="color: #666; font-size: 18px; margin: 0;">Copyright © 2026 AESURUS. Secure. Scale. Succeed. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/custom.js"></script>
+<script>
+      $(document).ready(function() {
+          // Removes any broken template clicks and forces our own
+          $('.menu-trigger').off('click').on('click', function(e) {
+              e.preventDefault();
+              $(this).toggleClass('active'); // Animates the burger icon
+              $('.header-area .main-nav .nav').slideToggle(300); // Slides the menu down
+          });
+
+          // Optional: Closes the menu if they click a link inside it
+          $('.header-area .main-nav .nav li a').on('click', function() {
+              if (window.innerWidth < 992) {
+                  $('.menu-trigger').removeClass('active');
+                  $('.header-area .main-nav .nav').slideUp(300);
+              }
+          });
+      });
+  </script>
+</body>
+</html>

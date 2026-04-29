@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="AESURUS - Command Center & Secure Uplink">
+    <meta name="author" content="AESURUS">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>AESURUS | Command Center</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css">
+    
+    <link rel="stylesheet" href="assets/css/aesurus-theme.css">
+
+    <style>
+        body {
+            background-color: #050505; 
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* --- SECURE HERO SECTION --- */
+        .uplink-hero {
+            position: relative;
+            padding: 180px 0 80px 0;
+            background-color: #050505;
+            border-bottom: 1px solid #1a1a1a;
+            overflow: hidden;
+        }
+
+        /* Tactical Grid Background */
+        .tactical-grid {
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(rgba(13, 110, 253, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(13, 110, 253, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
+        }
+
+        .hero-content { position: relative; z-index: 10; text-align: center; }
+        
+        .status-badge {
+            display: inline-flex; align-items: center;
+            background: rgba(0, 255, 0, 0.05); border: 1px solid rgba(0, 255, 0, 0.2);
+            color: #00ff00; font-family: monospace; font-size: 14px; letter-spacing: 2px;
+            padding: 8px 15px; border-radius: 4px; margin-bottom: 20px;
+        }
+        .pulse-dot {
+            width: 8px; height: 8px; background: #00ff00; border-radius: 50%;
+            margin-right: 10px; box-shadow: 0 0 10px #00ff00;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
+
+        .hero-title { color: #fff; font-size: 64px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; text-shadow: 0 0 30px rgba(13, 110, 253, 0.3); }
+        .hero-subtitle { color: #a1a1aa; font-size: 22px; font-weight: 300; max-width: 800px; margin: 0 auto; }
+
+        /* --- THE COMMAND CONSOLE (FORM) --- */
+        .console-section { padding: 80px 0 120px 0; position: relative; z-index: 10; }
+        
+        .auth-card {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 50px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+        .auth-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, #0d6efd, #ff4500);
+        }
+
+        .terminal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 30px;
+        }
+        .terminal-title { color: #fff; font-size: 24px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin: 0; }
+        .session-key { font-family: monospace; color: #64748b; font-size: 14px; }
+
+        /* Tactical Form Inputs */
+        .tactical-form label {
+            color: #9ca3af; font-family: monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block;
+        }
+        .tactical-form input, .tactical-form select, .tactical-form textarea {
+            background: #111 !important; color: #0d6efd !important; font-family: monospace; font-size: 18px;
+            border: 1px solid #333 !important; border-radius: 4px !important; padding: 15px 20px !important; width: 100%; transition: all 0.3s ease;
+        }
+        .tactical-form input:focus, .tactical-form select:focus, .tactical-form textarea:focus {
+            outline: none; border-color: #ff4500 !important; box-shadow: 0 0 15px rgba(255, 69, 0, 0.1) !important; color: #ff4500 !important;
+        }
+        .tactical-form input::placeholder, .tactical-form textarea::placeholder { color: #444 !important; }
+
+        .btn-transmit {
+            background: #ff4500; color: #fff; border: none; width: 100%; padding: 20px; font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; margin-top: 20px;
+        }
+        .btn-transmit:hover { background: #0d6efd; box-shadow: 0 0 20px rgba(13, 110, 253, 0.4); }
+
+        /* --- CONTACT NODES --- */
+        .node-box {
+            background: #111; border: 1px solid #222; padding: 40px 30px; border-radius: 8px; text-align: center; height: 100%; transition: all 0.3s ease;
+        }
+        .node-box:hover { border-color: #0d6efd; transform: translateY(-5px); }
+        .node-icon { font-size: 40px; color: #0d6efd; margin-bottom: 20px; }
+        .node-title { color: #fff; font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+        .node-detail { color: #a1a1aa; font-size: 18px; margin: 0; }
+        .node-detail a { color: #a1a1aa; transition: color 0.3s; }
+        .node-detail a:hover { color: #ff4500; }
+
+        /* Left side Pitch */
+        .pitch-box { padding-right: 40px; }
+        .pitch-box h3 { color: #fff; font-size: 42px; font-weight: 800; margin-bottom: 25px; line-height: 1.2; }
+        .pitch-box p { color: #a1a1aa; font-size: 20px; line-height: 1.7; margin-bottom: 30px; }
+        .guarantee-list { list-style: none; padding: 0; margin: 0; }
+        .guarantee-list li { color: #fff; font-size: 18px; margin-bottom: 15px; display: flex; align-items: center; }
+        .guarantee-list li i { color: #0d6efd; font-size: 20px; margin-right: 15px; }
+
+        @media (max-width: 992px) {
+            .hero-title { font-size: 48px; }
+            .pitch-box { padding-right: 0; margin-bottom: 50px; text-align: center; }
+            .guarantee-list li { justify-content: center; }
+        }
+        @media (max-width: 767px) {
+            .hero-title { font-size: 36px; }
+            .auth-card { padding: 30px 20px; }
+            .terminal-header { flex-direction: column; gap: 10px; text-align: center; }
+        }
+    </style>
+  </head>
+
+<body>
+
+ <header class="header-area header-sticky background-header" style="background-color: #0a0a0a !important;">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <a href="index.html" class="logo">
+                          <div style="display: flex; align-items: center; height: 110px;">
+                              <img src="assets/images/logo-blue.png" alt="AESURUS Logo" class="header-logo" style="max-height: 65px; border-radius: 8px;">
+                          </div>
+                      </a>
+                      <ul class="nav">
+                          <li><a href="index.html" class="active">Home</a></li>
+                          <li><a href="our-services.html">Services</a></li>
+                          <li><a href="cybersecurity.html">Cybersecurity</a></li>
+                          <li><a href="the-enclave.html">The Enclave</a></li>
+                          <li><a href="contact-us.html">Initiate Protocol</a></li> 
+                      </ul>        
+                      <a class='menu-trigger'><span>Menu</span></a>
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <div class="uplink-hero">
+      <div class="tactical-grid"></div>
+      <div class="container hero-content">
+          <div class="status-badge"><div class="pulse-dot"></div> SECURE CONNECTION ESTABLISHED</div>
+          <h1 class="hero-title">Initiate Protocol.</h1>
+          <p class="hero-subtitle">You are moments away from deploying enterprise-grade, zero-trust architecture. Transmit your parameters below to authorize AESURUS to secure your infrastructure.</p>
+      </div>
+  </div>
+
+  <section class="console-section">
+      <div class="container">
+          <div class="row align-items-center">
+              
+              <div class="col-lg-5 pitch-box">
+                  <h3>Permanent Protection <br><span style="color: #ff4500;">Starts Here.</span></h3>
+                  <p>When you initiate protocol with AESURUS, you aren't hiring an IT vendor. You are conscripting a private military for your digital assets. We replace vulnerability with absolute, uncompromising resilience.</p>
+                  
+                  <ul class="guarantee-list">
+                      <li><i class="fas fa-shield-check"></i> $1,000,000 Ransomware Warranty</li>
+                      <li><i class="fas fa-stopwatch"></i> 38-Minute Average Threat Closure</li>
+                      <li><i class="fas fa-globe-americas"></i> 100% Data Sovereignty & Compliance</li>
+                      <li><i class="fas fa-lock"></i> Air-Gapped Network Capabilities</li>
+                  </ul>
+              </div>
+
+              <div class="col-lg-7">
+                  <div class="auth-card">
+                      <div class="terminal-header">
+                          <h4 class="terminal-title">Clearance Request</h4>
+                          <div class="session-key">Session ID: <span id="randomKey">A7X-99B1</span></div>
+                      </div>
+
+                      <form id="contact" action="https://formspree.io/f/myklrwzj" method="POST" class="tactical-form">
+                          <div class="row">
+                              <div class="col-lg-6 mb-4">
+                                  <label for="name">Designated Commander</label>
+                                  <input type="text" name="name" id="name" placeholder="Name / Rank" required>
+                              </div>
+                              <div class="col-lg-6 mb-4">
+                                  <label for="email">Secure Routing</label>
+                                  <input type="email" name="email" id="email" placeholder="Corporate Email" required>
+                              </div>
+                              <div class="col-lg-12 mb-4">
+                                  <label for="company">Enterprise Designation</label>
+                                  <input type="text" name="company" id="company" placeholder="Company Name" required>
+                              </div>
+                              <div class="col-lg-12 mb-4">
+                                  <label for="directive">Strategic Directive</label>
+                                  <select name="Directive" id="directive" required>
+                                      <option value="" disabled selected>Select Deployment Type...</option>
+                                      <option value="Deploy The Enclave">Deploy The Enclave (Air-Gapped Vault)</option>
+                                      <option value="MDR Security Sub">MDR Security Subscription ($1M Warranty)</option>
+                                      <option value="Cloud Architecture">Cloud Architecture & Migration</option>
+                                      <option value="JDPA Compliance">JDPA / Regulatory Compliance Audit</option>
+                                  </select>
+                              </div>
+                              <div class="col-lg-12 mb-4">
+                                  <label for="message">Transmission Data</label>
+                                  <textarea name="message" id="message" rows="4" placeholder="Detail your current infrastructure threats or architecture requirements..." required></textarea>
+                              </div>
+                              <div class="col-lg-12">
+                                  <button type="submit" class="btn-transmit">Transmit Directive <i class="fas fa-satellite-dish ml-2"></i></button>
+                                  <p style="color: #64748b; font-family: monospace; font-size: 12px; text-align: center; margin-top: 15px;">Transmission is secured via AES-256 TLS Encryption.</p>
+                              </div>
+                          </div>
+                      </form>
+
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </section>
+
+  <section style="background-color: #000; padding: 80px 0; border-top: 1px solid #1a1a1a;">
+      <div class="container">
+          <div class="row g-4">
+              <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                  <div class="node-box">
+                      <i class="fas fa-map-marker-alt node-icon"></i>
+                      <h4 class="node-title">Primary Node</h4>
+                      <p class="node-detail">Kingston, Jamaica<br>St. Andrew Parish</p>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                  <div class="node-box">
+                      <i class="fas fa-envelope node-icon"></i>
+                      <h4 class="node-title">Secure Comms</h4>
+                      <p class="node-detail"><a href="mailto:info@aesurus.io">info@aesurus.io</a></p>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-12">
+                  <div class="node-box">
+                      <i class="fas fa-phone-alt node-icon"></i>
+                      <h4 class="node-title">Direct Uplink</h4>
+                      <p class="node-detail"><a href="tel:+18765550199">+1 (876) 283-2127</a><br><span style="font-size: 14px; color: #64748b;">(24/7 Threat Hotline)</span></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <footer style="background-color: #050505; text-align: center; padding: 40px 0; border-top: 2px solid #222;">
+    <div class="container">
+      <p style="color: #666; font-size: 18px; margin: 0;">Copyright © 2026 AESURUS. Secure. Scale. Succeed. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/custom.js"></script>
+<script>
+      $(document).ready(function() {
+          // Removes any broken template clicks and forces our own
+          $('.menu-trigger').off('click').on('click', function(e) {
+              e.preventDefault();
+              $(this).toggleClass('active'); // Animates the burger icon
+              $('.header-area .main-nav .nav').slideToggle(300); // Slides the menu down
+          });
+
+          // Optional: Closes the menu if they click a link inside it
+          $('.header-area .main-nav .nav li a').on('click', function() {
+              if (window.innerWidth < 992) {
+                  $('.menu-trigger').removeClass('active');
+                  $('.header-area .main-nav .nav').slideUp(300);
+              }
+          });
+      });
+  </script>
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          // Generate a cool looking "military" encryption key for the UI
+          function generateKey() {
+              const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+              let result = '';
+              for ( let i = 0; i < 4; i++ ) {
+                  result += chars.charAt(Math.floor(Math.random() * chars.length));
+              }
+              result += '-';
+              for ( let i = 0; i < 4; i++ ) {
+                  result += chars.charAt(Math.floor(Math.random() * chars.length));
+              }
+              result += '-';
+              for ( let i = 0; i < 4; i++ ) {
+                  result += chars.charAt(Math.floor(Math.random() * chars.length));
+              }
+              return result;
+          }
+          document.getElementById('randomKey').innerText = generateKey();
+      });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="AESURUS - Elite Managed Cloud & Infrastructure Services">
+    <meta name="author" content="AESURUS">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>AESURUS | Managed Enterprise Infrastructure</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css">
+    
+    <link rel="stylesheet" href="assets/css/aesurus-theme.css">
+
+    <style>
+        body {
+            background-color: #f8fafc; 
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* --- CLOUD MESH HERO SECTION --- */
+        .managed-hero {
+            position: relative;
+            height: 100vh;
+            min-height: 800px;
+            background-color: #050505;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 3px solid #ff4500;
+        }
+
+        /* Animated Aurora/Mesh Background */
+        .aurora-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(13, 110, 253, 0.15), transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(255, 69, 0, 0.15), transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(0, 210, 255, 0.1), transparent 50%);
+            filter: blur(60px);
+            z-index: 1;
+            animation: auroraShift 15s ease-in-out infinite alternate;
+        }
+        @keyframes auroraShift {
+            0% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.1) translate(5%, 5%); }
+            100% { transform: scale(1) translate(-5%, -5%); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+
+        .hero-tagline {
+            color: #0d6efd;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .hero-title {
+            color: #fff;
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .hero-subtitle {
+            color: #d1d5db;
+            font-size: 26px;
+            font-weight: 300;
+            margin-bottom: 50px;
+            line-height: 1.6;
+        }
+
+        /* --- VENDOR SHOWCASE SECTIONS --- */
+        .vendor-section { padding: 120px 0; border-bottom: 1px solid #e2e8f0; position: relative; overflow: hidden; }
+        .vendor-section.dark { background-color: #0a0a0a; border-bottom: 1px solid #222; color: #fff;}
+        .vendor-section.light { background-color: #fff; color: #0a0a0a; }
+
+        /* Floating Watermark Icons */
+        .vendor-watermark { position: absolute; font-size: 400px; opacity: 0.03; top: 50%; transform: translateY(-50%); z-index: 0; pointer-events: none; }
+        .vendor-watermark.right { right: -50px; }
+        .vendor-watermark.left { left: -50px; }
+        
+        .vendor-content { position: relative; z-index: 10; }
+        .vendor-logo-box { display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; border-radius: 15px; font-size: 40px; margin-bottom: 25px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .dark .vendor-logo-box { background: #111; border: 1px solid #333; }
+        .light .vendor-logo-box { background: #f8fafc; border: 1px solid #e2e8f0; }
+
+        .vendor-title { font-size: 48px; font-weight: 800; margin-bottom: 20px; }
+        .vendor-desc { font-size: 22px; line-height: 1.7; margin-bottom: 40px; }
+        .dark .vendor-desc { color: #a1a1aa; }
+        .light .vendor-desc { color: #4b5563; }
+
+        /* Services Grid under each vendor */
+        .v-services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .v-card { padding: 30px; border-radius: 12px; transition: all 0.3s ease; position: relative; }
+        .dark .v-card { background: #111; border: 1px solid #222; }
+        .dark .v-card:hover { border-color: #0d6efd; background: #151515; transform: translateY(-5px); }
+        .light .v-card { background: #f8fafc; border: 1px solid #e2e8f0; }
+        .light .v-card:hover { border-color: #ff4500; background: #fff; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        
+        .v-card h4 { font-size: 24px; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; }
+        .v-card h4 i { margin-right: 15px; font-size: 20px; }
+        .dark .v-card h4 { color: #fff; }
+        .v-card p { font-size: 16px; margin: 0; line-height: 1.6; }
+        .dark .v-card p { color: #d1d5db; }
+        .light .v-card p { color: #4b5563; }
+
+        /* Specific Brand Colors */
+        .brand-ms { color: #00a4ef; }
+        .brand-aws { color: #ff9900; }
+        .brand-gcp { color: #ea4335; }
+        .brand-oracle { color: #c74634; }
+        .brand-veeam { color: #00b336; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 56px; }
+            .v-services-grid { grid-template-columns: 1fr; }
+            .vendor-watermark { display: none; }
+        }
+        @media (max-width: 767px) {
+            .hero-title { font-size: 42px; }
+            .hero-subtitle { font-size: 20px; }
+            .vendor-title { font-size: 36px; }
+            .vendor-desc { font-size: 18px; }
+        }
+    </style>
+  </head>
+
+<body>
+
+ <header class="header-area header-sticky background-header" style="background-color: #0a0a0a !important;">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <a href="index.html" class="logo">
+                          <div style="display: flex; align-items: center; height: 110px;">
+                              <img src="assets/images/logo-blue.png" alt="AESURUS Logo" class="header-logo" style="max-height: 65px; border-radius: 8px;">
+                          </div>
+                      </a>
+                      <ul class="nav">
+                          <li><a href="index.html" class="active">Home</a></li>
+                          <li><a href="our-services.html">Services</a></li>
+                          <li><a href="cybersecurity.html">Cybersecurity</a></li>
+                          <li><a href="the-enclave.html">The Enclave</a></li>
+                          <li><a href="contact-us.html">Initiate Protocol</a></li> 
+                      </ul>        
+                      <a class='menu-trigger'><span>Menu</span></a>
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <div class="managed-hero">
+      <div class="aurora-bg"></div>
+      
+      <div class="hero-content">
+          <div class="hero-tagline">Architect. Optimize. Dominate.</div>
+          <h1 class="hero-title">Unified Enterprise <br>Cloud Management.</h1>
+          <p class="hero-subtitle">Stop wasting engineering hours managing infrastructure. AESURUS partners with the world's leading cloud platforms to deliver optimized, fully managed, and aggressively secured architecture. You run the business. We run the cloud.</p>
+          <a href="#microsoft" class="btn" style="background: #ff4500; color: #fff; padding: 20px 50px; border-radius: 5px; font-size: 22px; font-weight: 700; text-transform: uppercase;">View Capabilities</a>
+      </div>
+  </div>
+
+  <section class="vendor-section light" id="microsoft">
+      <i class="fab fa-windows vendor-watermark right brand-ms"></i>
+      <div class="container vendor-content">
+          <div class="row align-items-center">
+              <div class="col-lg-5 mb-5 mb-lg-0">
+                  <div class="vendor-logo-box brand-ms"><i class="fab fa-windows"></i></div>
+                  <h2 class="vendor-title">Microsoft & Azure</h2>
+                  <p class="vendor-desc">The modern enterprise runs on Microsoft. We ensure it runs securely. From complex Azure cloud migrations to total governance over your Microsoft 365 tenant, AESURUS transforms Microsoft's powerful tools into an impenetrable, highly efficient workspace.</p>
+                  <a href="contact-us.html" style="color: #0d6efd; font-size: 18px; font-weight: 700; text-decoration: none;">Deploy Microsoft Architecture <i class="fas fa-arrow-right ml-2"></i></a>
+              </div>
+              <div class="col-lg-7 pl-lg-5">
+                  <div class="v-services-grid">
+                      <div class="v-card">
+                          <h4><i class="fas fa-cloud brand-ms"></i> Azure Cloud Architecture</h4>
+                          <p>We design, deploy, and manage highly available Azure Virtual Machines, Virtual Networks, and scalable SQL databases to power your core applications.</p>
+                      </div>
+                      <div class="v-card">
+                          <h4><i class="fas fa-shield-alt brand-ms"></i> M365 Security & Governance</h4>
+                          <p>We lock down your tenant. Conditional Access policies, anti-phishing rule sets, SharePoint permission audits, and total Business Email Compromise (BEC) prevention.</p>
+                      </div>
+                      <div class="v-card">
+                          <h4><i class="fas fa-mobile-alt brand-ms"></i> Intune Endpoint Management</h4>
+                          <p>Total control over your corporate fleet. We enforce encryption, push critical software, and allow remote wiping of lost Windows, iOS, and Android devices.</p>
+                      </div>
+                      <div class="v-card">
+                          <h4><i class="fas fa-users-cog brand-ms"></i> Active Directory Integration</h4>
+                          <p>Seamless hybrid identity management. We sync your on-premise servers with Azure AD, enforcing strict SSO and Multi-Factor Authentication.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="vendor-section dark">
+      <i class="fab fa-aws vendor-watermark left brand-aws"></i>
+      <div class="container vendor-content">
+          <div class="row align-items-center flex-row-reverse">
+              <div class="col-lg-5 mb-5 mb-lg-0 pl-lg-5">
+                  <div class="vendor-logo-box brand-aws"><i class="fab fa-aws"></i></div>
+                  <h2 class="vendor-title">Amazon Web Services</h2>
+                  <p class="vendor-desc">Limitless scale requires relentless optimization. Most AWS deployments are over-provisioned, bleeding budget, and poorly secured. AESURUS engineers align your infrastructure with the AWS Well-Architected Framework to maximize ROI and fortify your VPCs.</p>
+                  <a href="contact-us.html" style="color: #ff9900; font-size: 18px; font-weight: 700; text-decoration: none;">Optimize AWS Infrastructure <i class="fas fa-arrow-right ml-2"></i></a>
+              </div>
+              <div class="col-lg-7 pr-lg-5">
+                  <div class="v-services-grid">
+                      <div class="v-card">
+                          <h4><i class="fas fa-server brand-aws"></i> EC2 & Compute Scaling</h4>
+                          <p>Automated elastic load balancing and auto-scaling groups ensure your applications perform flawlessly during traffic spikes while spinning down to save costs off-peak.</p>
+                      </div>
+                      <div class="v-card">
+                          <h4><i class="fas fa-database brand-aws"></i> S3 & RDS Management</h4>
+                          <p>Secure, compliant storage architectures. We implement S3 lifecycle rules, bucket encryption, and fully managed Relational Database Services for zero downtime.</p>
+                      </div>
+                      <div class="v-card">
+                          <h4><i class="fas fa-lock brand-aws"></i> VPC & IAM Security</h4>
+                          <p>We build virtual fortresses. Strict Identity and Access Management roles, segmented Virtual Private Clouds, and active GuardDuty threat monitoring.</p>
+                      </div>
+                      <div class="v-card">
+                          <h4><i class="fas fa-chart-line brand-aws"></i> FinOps & Cost Optimization</h4>
+                          <p>Stop paying for idle resources. Our engineers perform deep financial audits, purchasing Reserved Instances and stripping out digital waste.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="vendor-section light">
+      <i class="fab fa-google vendor-watermark right brand-gcp"></i>
+      <div class="container vendor-content">
+          <div class="row align-items-center">
+              <div class="col-lg-5 mb-5 mb-lg-0">
+                  <div class="vendor-logo-box brand-gcp"><i class="fab fa-google"></i></div>
+                  <h2 class="vendor-title">Google Cloud & Workspace</h2>
+                  <p class="vendor-desc">Harness the power of the planet's fastest network. Whether migrating your team to Google Workspace or deploying advanced Kubernetes clusters in GCP, AESURUS ensures your Google infrastructure is blazing fast and completely secure.</p>
+                  <a href="contact-us.html" style="color: #ea4335; font-size: 18px; font-weight: 700; text-decoration: none;">Deploy Google Solutions <i class="fas fa-arrow-right ml-2"></i></a>
+              </div>
+              <div class="col-lg-7 pl-lg-5">
+                  <div class="v-services-grid">
+                      <div class="v-card">
+                          <h4><i class="fas fa-network-wired brand-gcp"></i> GCP Infrastructure (IaaS)</h4>
+                          <p>Design and management of Google Compute Engine and Cloud Storage, leveraging Google's premium global fiber network for unmatched speed.</p>
+                      </div>
+                      <div class="v-card">
+                          <h4><i class="fas fa-boxes brand-gcp"></i> Kubernetes Engine (GKE)</h4>
+                          <p>We deploy and manage containerized applications, providing seamless CI/CD pipelines and microservices orchestration for development teams.</p>
+                      </div>
+                      <div class="v-card">
+                          <h4><i class="fas fa-users brand-gcp"></i> Workspace Administration</h4>
+                          <p>Total management of Gmail, Drive, and Docs. We enforce strict data loss prevention (DLP) rules so sensitive corporate data cannot leave your domain.</p>
+                      </div>
+                      <div class="v-card">
+                          <h4><i class="fas fa-user-shield brand-gcp"></i> Zero-Trust BeyondCorp</h4>
+                          <p>Implementation of Google's BeyondCorp enterprise security model, ensuring access is based on device context and user identity, not network location.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="vendor-section dark">
+      <i class="fas fa-database vendor-watermark left brand-oracle"></i>
+      <div class="container vendor-content">
+          <div class="row align-items-center flex-row-reverse">
+              <div class="col-lg-5 mb-5 mb-lg-0 pl-lg-5">
+                  <div class="vendor-logo-box brand-oracle"><i class="fas fa-database"></i></div>
+                  <h2 class="vendor-title">Oracle Cloud (OCI)</h2>
+                  <p class="vendor-desc">For heavy-duty, data-intensive enterprise workloads, nothing matches Oracle Cloud Infrastructure. AESURUS specializes in migrating legacy on-premise systems into high-performance, ultra-secure OCI environments.</p>
+                  <a href="contact-us.html" style="color: #c74634; font-size: 18px; font-weight: 700; text-decoration: none;">Explore Oracle Architecture <i class="fas fa-arrow-right ml-2"></i></a>
+              </div>
+              <div class="col-lg-7 pr-lg-5">
+                  <div class="v-services-grid">
+                      <div class="v-card">
+                          <h4><i class="fas fa-microchip brand-oracle"></i> Bare Metal Compute</h4>
+                          <p>For applications demanding maximum performance without virtualization overhead, we deploy and manage OCI Bare Metal servers.</p>
+                      </div>
+                      <div class="v-card">
+                          <h4><i class="fas fa-hdd brand-oracle"></i> Autonomous Database</h4>
+                          <p>We integrate and monitor Oracle's self-driving databases, ensuring automated patching, tuning, and scaling for zero administrative downtime.</p>
+                      </div>
+                      <div class="v-card">
+                          <h4><i class="fas fa-cogs brand-oracle"></i> ERP & EPM Support</h4>
+                          <p>Infrastructure support for critical enterprise resource planning software, ensuring high availability for your financial and operational backbone.</p>
+                      </div>
+                      <div class="v-card">
+                          <h4><i class="fas fa-project-diagram brand-oracle"></i> Multi-Cloud FastConnect</h4>
+                          <p>We architect dedicated, private connections between your Oracle databases and AWS/Azure front-ends for multi-cloud dominance.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="vendor-section light">
+      <i class="fas fa-layer-group vendor-watermark right brand-veeam"></i>
+      <div class="container vendor-content">
+          <div class="row align-items-center">
+              <div class="col-lg-5 mb-5 mb-lg-0">
+                  <div class="vendor-logo-box brand-veeam"><i class="fas fa-layer-group"></i></div>
+                  <h2 class="vendor-title">Veeam Data Resilience</h2>
+                  <p class="vendor-desc">A backup is useless if ransomware encrypts it. AESURUS leverages Veeam to engineer immutable, un-hackable data retention strategies. When disaster strikes, we don't just recover your data; we revive your entire business in minutes.</p>
+                  <a href="contact-us.html" style="color: #00b336; font-size: 18px; font-weight: 700; text-decoration: none;">Ensure Data Resilience <i class="fas fa-arrow-right ml-2"></i></a>
+              </div>
+              <div class="col-lg-7 pl-lg-5">
+                  <div class="v-services-grid">
+                      <div class="v-card">
+                          <h4><i class="fas fa-shield-virus brand-veeam"></i> Immutable Backups</h4>
+                          <p>We deploy WORM (Write Once, Read Many) storage architectures. Once your backup is written, it physically cannot be altered or deleted by ransomware.</p>
+                      </div>
+                      <div class="v-card">
+                          <h4><i class="fas fa-sync-alt brand-veeam"></i> Disaster Recovery (DRaaS)</h4>
+                          <p>Automated failover. If your primary server goes down, Veeam instantly spins up a replica in our cloud, keeping your business online seamlessly.</p>
+                      </div>
+                      <div class="v-card">
+                          <h4><i class="fas fa-history brand-veeam"></i> Continuous Data Protection</h4>
+                          <p>We eliminate data loss. CDP tracks every single write operation on your servers, allowing us to roll your systems back to the exact second before a crash.</p>
+                      </div>
+                      <div class="v-card">
+                          <h4><i class="fas fa-cloud-upload-alt brand-veeam"></i> M365 & Workspace Backup</h4>
+                          <p>Microsoft and Google do not back up your data. We deploy Veeam specifically to back up your corporate emails, SharePoint, and Drive files indefinitely.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="sleek-section" style="background-color: #0d6efd; padding: 100px 0;">
+      <div class="container text-center">
+          <h6 style="color: #050505; font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">Stop Maintaining. Start Scaling.</h6>
+          <h2 style="font-size: 56px; font-weight: 800; color: #fff; margin-bottom: 20px; margin-top: 15px;">One Vendor. Absolute Control.</h2>
+          <p style="color: #e0e7ff; font-size: 24px; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">Our 24/7 Network Operations Center (NOC) seamlessly manages your multi-cloud environment. Submit your parameters for a custom architecture review.</p>
+          <a href="contact-us.html" class="btn" style="background: #050505; color: #fff; padding: 20px 50px; border-radius: 8px; font-size: 22px; font-weight: 700; letter-spacing: 1px;">Initiate IT Audit</a>
+      </div>
+  </section>
+
+  <footer style="background-color: #050505; text-align: center; padding: 40px 0; border-top: 2px solid #222;">
+    <div class="container">
+      <p style="color: #666; font-size: 18px; margin: 0;">Copyright © 2026 AESURUS. Secure. Scale. Succeed. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/custom.js"></script>
+<script>
+      $(document).ready(function() {
+          // Removes any broken template clicks and forces our own
+          $('.menu-trigger').off('click').on('click', function(e) {
+              e.preventDefault();
+              $(this).toggleClass('active'); // Animates the burger icon
+              $('.header-area .main-nav .nav').slideToggle(300); // Slides the menu down
+          });
+
+          // Optional: Closes the menu if they click a link inside it
+          $('.header-area .main-nav .nav li a').on('click', function() {
+              if (window.innerWidth < 992) {
+                  $('.menu-trigger').removeClass('active');
+                  $('.header-area .main-nav .nav').slideUp(300);
+              }
+          });
+      });
+  </script>
+</body>
+</html>

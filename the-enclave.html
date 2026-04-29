@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="AESURUS - The Enclave Protocol">
+    <meta name="author" content="AESURUS">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>AESURUS | The Enclave Protocol</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css">
+    <link rel="stylesheet" href="assets/css/aesurus-theme.css">
+
+    <style>
+        body {
+            background-color: #f8fafc; 
+            color: #333;
+            overflow-x: clip; 
+        }
+
+        /* --------------------------------------
+           3D SCROLLYTELLING ANIMATION CSS
+           -------------------------------------- */
+        .scrollytelling-container { height: 500vh; position: relative; z-index: 10; background-color: #050505; }
+        
+        .sticky-stage {
+            position: sticky; top: 0; height: 100vh; width: 100%;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; background: radial-gradient(circle at center, #151515 0%, #000 80%);
+        }
+        
+        /* Mobile Fallback for 3D Laptop */
+        .mobile-enclave-fallback { display: none; padding: 100px 20px; background: #050505; text-align: center; border-bottom: 1px solid #222;}
+        
+        @media (max-width: 991px) {
+            .scrollytelling-container { display: none !important; }
+            .mobile-enclave-fallback { display: block; }
+        }
+
+        /* 1. The Main Scene Wrapper */
+        .vault-scene { 
+            perspective: 3000px; 
+            width: 1200px; 
+            height: 900px; 
+            position: relative; 
+            margin-top: 50vh; 
+            transform: scale(0.9); 
+            will-change: transform;
+        }
+
+        /* 2. The Chassis (The Base of the Laptop) */
+        .vault-base-chassis {
+            position: absolute;
+            bottom: 0;
+            width: 1400px;
+            height: 900px;
+            transform-style: preserve-3d;
+            transform: rotateX(60deg); 
+            margin-top: 150px;
+        }
+
+        .vault-base-bottom {
+            position: absolute; inset: 0; background: #050505; border-radius: 24px;
+            transform: translateZ(-25px); 
+            box-shadow: 0 40px 60px rgba(0,0,0,0.9);
+        }
+
+        .vault-base-top {
+            position: absolute; inset: 0; background: #111; border-radius: 24px;
+            transform: translateZ(0); box-shadow: inset 0 0 0 2px #222;
+        }
+
+        .vault-keyboard {
+            position: absolute; top: 100px; left: 100px; right: 100px; height: 450px;
+            background: #0a0a0a; border-radius: 12px; box-shadow: inset 0 0 20px rgba(0,0,0,1);
+            background-image: repeating-linear-gradient( 0deg, transparent, transparent 15px, #1a1a1a 15px, #1a1a1a 30px ),
+                              repeating-linear-gradient( 90deg, transparent, transparent 15px, #1a1a1a 15px, #1a1a1a 30px );
+        }
+
+        .vault-trackpad {
+            position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%);
+            width: 400px; height: 160px; background: #151515; border-radius: 8px; border: 1px solid #050505;
+        }
+
+        /* 3. The Lid */
+        .vault-lid {
+            position: absolute; top: 0; left: 0; width: 100%; height: 900px;
+            transform-origin: bottom center; 
+            transform: translateY(-100%) rotateX(-180deg); 
+            transform-style: preserve-3d;
+        }
+
+        .vault-lid-back {
+            position: absolute; inset: 0; background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+            border-radius: 24px; transform: translateZ(-2px); border: 2px solid #333;
+            display: flex; align-items: center; justify-content: center;
+        }
+        
+        .vault-lid-back .logo-engraving {
+            font-size: 80px; font-weight: 800; color: #0a0a0a; letter-spacing: 20px;
+            text-shadow: 1px 1px 1px #333, -1px -1px 1px #000; 
+        }
+
+        .vault-screen {
+            position: absolute; inset: 0; background: #050505; border-radius: 24px;
+            transform: translateZ(2px); border: 25px solid #111; 
+            display: flex; flex-direction: column; overflow: hidden;
+            box-shadow: inset 0 0 0 2px #333;
+        }
+
+        .camera-notch {
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 35px; background: #111; border-radius: 0 0 15px 15px; z-index: 20; display: flex; align-items: center; justify-content: center;
+        }
+        .camera-lens { width: 12px; height: 12px; background: #000; border-radius: 50%; border: 1px solid #333; }
+
+        /* --- SCREEN SEQUENCES --- */
+        .cloud-sequence { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; z-index: 10; }
+        .cloud-icon { font-size: 150px; color: #fff; margin-bottom: 30px; transition: color 0.3s ease; }
+        .cloud-text { font-size: 38px; font-weight: 500; letter-spacing: 2px; color: #fff; transition: color 0.3s ease; text-align: center; padding: 0 20px; }
+        
+        .enclave-sequence { position: absolute; inset: 0; padding: 120px; opacity: 0; z-index: 5; background: radial-gradient(circle at top right, rgba(13, 110, 253, 0.1), transparent 70%); }
+        .screen-spec { opacity: 0; transform: translateY(30px); transition: all 0.5s ease; margin-bottom: 50px; }
+        .spec-title { color: #0d6efd; font-size: 32px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 12px; }
+        .spec-desc { color: #fff; font-size: 46px; font-weight: 300; line-height: 1.4; }
+        .spec-alert { color: #ff4500; font-weight: 700;}
+        
+        .narrative-text { position: absolute; width: 100%; text-align: center; top: 8%; font-size: 56px; font-weight: 800; opacity: 1; transition: opacity 0.3s; z-index: 100; color: #fff;}
+        .narrative-subtext { font-size: 28px; font-weight: 400; color: #0d6efd; }
+
+        /* --------------------------------------
+           STANDARD PAGE SECTIONS (LIGHT THEME)
+           -------------------------------------- */
+        .enclave-section { padding: 120px 0; border-bottom: 1px solid #e2e8f0; position: relative; z-index: 20; background: #fff;}
+        .enclave-section h2 { color: #0a0a0a; font-size: 56px; font-weight: 800; margin-bottom: 30px; }
+        .enclave-section p { color: #333; font-size: 22px; line-height: 1.8; margin-bottom: 30px; }
+        
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
+        .feature-card { background: #fff; padding: 50px 40px; border-radius: 16px; border: 1px solid #e2e8f0; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);}
+        .feature-card:hover { border-color: #ff4500; transform: translateY(-10px); box-shadow: 0 15px 40px rgba(13, 110, 253, 0.1); }
+        .feature-card i { font-size: 50px; color: #0d6efd; margin-bottom: 30px; display: block; }
+        .feature-card h4 { font-size: 28px; color: #0a0a0a; font-weight: 700; margin-bottom: 20px; }
+        .feature-card p { font-size: 18px; color: #4b5563; margin-bottom: 0; }
+
+        .specs-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+        .specs-table tr { border-bottom: 1px solid #e2e8f0; }
+        .specs-table td { padding: 25px 0; font-size: 22px; }
+        .specs-table td:first-child { color: #0d6efd; font-weight: 700; width: 35%; }
+        .specs-table td:last-child { color: #333; font-weight: 400; }
+
+        .mission-box { background: radial-gradient(circle at center, #0d6efd 0%, #050505 100%); padding: 1px; border-radius: 20px; margin-top: 50px; }
+        .mission-inner { background: #0a0a0a; padding: 80px 60px; border-radius: 19px; text-align: center; }
+        .mission-inner h2 { font-size: 48px; color: #fff; margin-bottom: 30px; }
+        .mission-inner p { font-size: 26px; color: #d1d5db; font-style: italic; max-width: 900px; margin: 0 auto; }
+
+        .faq-box { margin-top: 50px; }
+        details { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 20px; overflow: hidden; transition: all 0.3s; box-shadow: 0 2px 10px rgba(0,0,0,0.02);}
+        details[open] { border-color: #0d6efd; }
+        summary { font-size: 24px; font-weight: 600; color: #0a0a0a; padding: 30px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; outline: none; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '+'; color: #0d6efd; font-size: 32px; font-weight: 300; }
+        details[open] summary::after { content: '-'; color: #ff4500; }
+        .faq-content { padding: 0 30px 30px 30px; font-size: 20px; color: #4b5563; line-height: 1.8; border-top: 1px solid #e2e8f0; margin-top: 10px; padding-top: 20px; }
+
+        /* Responsive Overrides */
+        @media (max-width: 1500px) { .vault-scene { transform: scale(0.8); } }
+        @media (max-width: 1200px) { .vault-scene { transform: scale(0.65); } }
+        @media (max-width: 992px) { 
+            .vault-scene { transform: scale(0.5); }
+            .narrative-text { font-size: 36px; top: 8%; }
+            .spec-desc { font-size: 32px; }
+            .enclave-section h2 { font-size: 42px; }
+            .specs-table td { font-size: 18px; display: block; width: 100%; padding: 15px 0 5px 0;}
+            .specs-table td:last-child { padding: 5px 0 25px 0; border-bottom: 1px solid #e2e8f0; }
+            .specs-table tr { border: none; }
+        }
+        @media (max-width: 767px) { 
+            .vault-scene { transform: scale(0.28); }
+            .narrative-text { font-size: 24px; }
+            .cloud-icon { font-size: 100px; }
+            .cloud-text { font-size: 24px; }
+            .enclave-section { padding: 80px 0; }
+            .mission-inner { padding: 40px 20px; }
+            summary { font-size: 18px; padding: 20px; }
+        }
+    </style>
+  </head>
+
+<body>
+
+  <header class="header-area header-sticky background-header" style="background-color: #0a0a0a !important;">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <a href="index.html" class="logo">
+                          <div style="display: flex; align-items: center; height: 110px;">
+                              <img src="assets/images/logo-blue.png" alt="AESURUS Logo" class="header-logo" style="max-height: 65px; border-radius: 8px;">
+                          </div>
+                      </a>
+                      <ul class="nav">
+                          <li><a href="index.html">Home</a></li>
+                          <li><a href="our-services.html">Services</a></li>
+                          <li><a href="cybersecurity.html">Cybersecurity</a></li>
+                          <li><a href="the-enclave.html" class="active">The Enclave</a></li>
+                          <li><a href="contact-us.html">Initiate Protocol</a></li> 
+                      </ul>        
+                      <a class='menu-trigger'><span>Menu</span></a>
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <div class="scrollytelling-container" id="scrollContainer">
+      <div class="sticky-stage">
+          <div class="narrative-text" id="narrativeText">
+              Standard Cloud Security is Failing. <br>
+              <span class="narrative-subtext">Scroll to deploy The Enclave.</span>
+          </div>
+
+          <div class="vault-scene" id="vaultScene">
+              <div class="vault-base-chassis">
+                  <div class="vault-base-bottom"></div>
+                  
+                  <div class="vault-base-top">
+                      <div class="vault-keyboard"></div>
+                      <div class="vault-trackpad"></div>
+                  </div>
+
+                  <div class="vault-lid" id="vaultLid">
+                      <div class="vault-lid-back">
+                          <div class="logo-engraving">AESURUS</div>
+                      </div>
+
+                      <div class="vault-screen" id="vaultScreen">
+                          <div class="camera-notch"><div class="camera-lens"></div></div>
+                          
+                          <div class="cloud-sequence" id="cloudSequence">
+                              <i class="fas fa-cloud cloud-icon" id="cloudIcon"></i>
+                              <div class="cloud-text" id="cloudText">Connecting to Public Cloud...</div>
+                          </div>
+
+                          <div class="enclave-sequence" id="enclaveSequence">
+                              <div class="screen-spec" id="spec1">
+                                  <div class="spec-title">Architecture</div>
+                                  <div class="spec-desc">100% Air-Gapped Network Isolation.</div>
+                              </div>
+                              <div class="screen-spec" id="spec2">
+                                  <div class="spec-title">Sovereignty</div>
+                                  <div class="spec-desc">Immune to foreign data subpoenas.</div>
+                              </div>
+                              <div class="screen-spec" id="spec3">
+                                  <div class="spec-title">Status</div>
+                                  <div class="spec-desc spec-alert">Zero-Trust Secured.</div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div> <div class="mobile-enclave-fallback">
+      <h6 style="color: #0d6efd; font-size: 16px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;">Standard Cloud Security is Failing</h6>
+      <h2 style="font-size: 38px; font-weight: 800; color: #fff; margin-bottom: 30px;">The Enclave Protocol.</h2>
+      <i class="fas fa-fingerprint" style="font-size: 60px; color: #ff4500; margin-bottom: 30px; display: block;"></i>
+      
+      <div style="background: #111; padding: 30px 20px; border-radius: 12px; border: 1px solid #222; margin-bottom: 15px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);">
+          <h4 style="color: #0d6efd; font-size: 22px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase;">Architecture</h4>
+          <p style="color: #d1d5db; font-size: 18px; margin: 0;">100% Air-Gapped Network Isolation.</p>
+      </div>
+      
+      <div style="background: #111; padding: 30px 20px; border-radius: 12px; border: 1px solid #222; margin-bottom: 15px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);">
+          <h4 style="color: #0d6efd; font-size: 22px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase;">Sovereignty</h4>
+          <p style="color: #d1d5db; font-size: 18px; margin: 0;">Immune to foreign data subpoenas.</p>
+      </div>
+      
+      <div style="background: #111; padding: 30px 20px; border-radius: 12px; border: 1px solid #222; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);">
+          <h4 style="color: #0d6efd; font-size: 22px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase;">Status</h4>
+          <p style="color: #ff4500; font-size: 20px; font-weight: 700; margin: 0; letter-spacing: 1px;">Zero-Trust Secured.</p>
+      </div>
+  </div>
+
+  <section class="enclave-section" id="features">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12 text-center">
+                  <h6 style="color: #ff4500; font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">The Arsenal</h6>
+                  <h2>Uncompromising Features</h2>
+              </div>
+          </div>
+          <div class="feature-grid">
+              <div class="feature-card">
+                  <i class="fas fa-shield-alt"></i>
+                  <h4>Physical Isolation</h4>
+                  <p>Your data is stored in vaults completely disconnected from public routing. You cannot hack what you cannot physically reach.</p>
+              </div>
+              <div class="feature-card">
+                  <i class="fas fa-fingerprint"></i>
+                  <h4>Zero-Trust Protocol</h4>
+                  <p>Strict micro-segmentation and mandatory multi-factor authentication for every access point. We assume the network is already hostile.</p>
+              </div>
+              <div class="feature-card">
+                  <i class="fas fa-globe-americas"></i>
+                  <h4>Absolute Sovereignty</h4>
+                  <p>Data remains entirely within your jurisdictional boundaries, shielding your enterprise from foreign legal interference.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="enclave-section" style="background-color: #f8fafc;" id="how-it-works">
+      <div class="container">
+          <div class="row align-items-center">
+              <div class="col-lg-6 pr-lg-5">
+                  <h6 style="color: #0d6efd; font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;">The Methodology</h6>
+                  <h2>How It Works</h2>
+                  <p>Deployment of The Enclave is executed with military precision to ensure zero operational downtime.</p>
+                  
+                  <div style="margin-top: 40px;">
+                      <div style="display: flex; margin-bottom: 30px;">
+                          <div style="font-size: 40px; font-weight: 800; color: #ff4500; margin-right: 25px; line-height: 1;">01</div>
+                          <div>
+                              <h4 style="color: #0a0a0a; font-size: 24px; font-weight: 600; margin-bottom: 10px;">Threat Modeling</h4>
+                              <p style="font-size: 18px;">We map your critical data assets and sever all unnecessary external access points.</p>
+                          </div>
+                      </div>
+                      <div style="display: flex; margin-bottom: 30px;">
+                          <div style="font-size: 40px; font-weight: 800; color: #0d6efd; margin-right: 20px; line-height: 1;">02</div>
+                          <div>
+                              <h4 style="color: #0a0a0a; font-size: 24px; font-weight: 600; margin-bottom: 10px;">Vault Migration</h4>
+                              <p style="font-size: 18px;">Data is encrypted and moved into our air-gapped sovereign architecture.</p>
+                          </div>
+                      </div>
+                      <div style="display: flex;">
+                          <div style="font-size: 40px; font-weight: 800; color: #333; margin-right: 20px; line-height: 1;">03</div>
+                          <div>
+                              <h4 style="color: #0a0a0a; font-size: 24px; font-weight: 600; margin-bottom: 10px;">Active Overwatch</h4>
+                              <p style="font-size: 18px;">Elite threat hunters actively monitor the perimeter 24/7/365 to ensure integrity.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-6 mt-5 mt-lg-0">
+                  <div style="background: #fff; padding: 60px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                      <h6 style="color: #ff4500; font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;">The Philosophy</h6>
+                      <h2 style="font-size: 42px; margin-bottom: 20px;">Why It Works</h2>
+                      <p style="margin-bottom: 20px;">Standard cloud providers rely on "software-defined" perimeters. If a hacker steals the right password, the software lets them in.</p>
+                      <p><strong>The Enclave relies on physics.</strong> By combining air-gapped isolation with offline immutable backups, we physically remove the attack vector. It works because we eliminate the possibility of remote, automated exploitation.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="enclave-section" id="specs">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12">
+                  <h6 style="color: #0d6efd; font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">Technical Data</h6>
+                  <h2>Architecture Specifications</h2>
+                  
+                  <table class="specs-table">
+                      <tr>
+                          <td>Uptime Guarantee</td>
+                          <td>99.999% SLA backed by automated DRaaS failovers.</td>
+                      </tr>
+                      <tr>
+                          <td>Encryption Protocol</td>
+                          <td>AES-256 bit encryption at rest and in transit.</td>
+                      </tr>
+                      <tr>
+                          <td>Access Control</td>
+                          <td>Mandatory hardware-based MFA and biometric verification.</td>
+                      </tr>
+                      <tr>
+                          <td>Compliance Rating</td>
+                          <td>100% compliant with the Jamaica Data Protection Act (JDPA).</td>
+                      </tr>
+                      <tr>
+                          <td>Threat Hunting</td>
+                          <td>Integrated natively with Sophos Managed Detection & Response.</td>
+                      </tr>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="enclave-section" style="border-bottom: none; padding-top: 40px;" id="mission">
+      <div class="container">
+          <div class="mission-box">
+              <div class="mission-inner">
+                  <h6 style="color: #ff4500; font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;">Why We Built The Enclave</h6>
+                  <h2>Survival is not optional.</h2>
+                  <p>"We witnessed enterprise after enterprise fall to ransomware and foreign data breaches because they trusted standard, public clouds. The Enclave was forged to give organizations absolute control and guarantee that their legacy endures the unpredictable."</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="enclave-section" style="background-color: #f8fafc;" id="faq">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-8 offset-lg-2">
+                  <h6 style="color: #0d6efd; font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-align: center;">Knowledge Base</h6>
+                  <h2 style="text-align: center;">Frequently Asked Questions</h2>
+                  
+                  <div class="faq-box">
+                      <details>
+                          <summary>What exactly does "Air-Gapped" mean?</summary>
+                          <div class="faq-content">
+                              An air-gapped network means the computers and storage drives holding your most critical data have no physical or wireless connection to unsecured public networks (like the open internet). Because there is a physical gap, hackers cannot reach it remotely to deploy ransomware.
+                          </div>
+                      </details>
+                      <details>
+                          <summary>Will The Enclave slow down our daily operations?</summary>
+                          <div class="faq-content">
+                              No. AESURUS engineers the architecture so that your team experiences a frictionless workflow. While the backend security is incredibly complex, the user experience is seamless, requiring only standard MFA approvals for authorized personnel.
+                          </div>
+                      </details>
+                      <details>
+                          <summary>How does this protect us legally?</summary>
+                          <div class="faq-content">
+                              By ensuring Data Sovereignty, your information is stored locally and is subject only to local laws. This prevents foreign governments from subpoenaing your data through international cloud providers (like Amazon or Microsoft) without your knowledge.
+                          </div>
+                      </details>
+                      <details>
+                          <summary>Is The Enclave compliant with the JDPA?</summary>
+                          <div class="faq-content">
+                              Absolutely. The Enclave was built specifically to exceed the stringent requirements of the Jamaica Data Protection Act (JDPA). Our architecture secures consumer data privacy, preventing leaks and massive regulatory fines.
+                          </div>
+                      </details>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="sleek-section" style="background-color: #0d6efd; padding: 100px 0;">
+      <div class="container text-center">
+          <h2 style="font-size: 56px; font-weight: 800; color: #fff; margin-bottom: 20px;">Deploy The Enclave Today.</h2>
+          <p style="color: #e0e7ff; font-size: 26px; margin-bottom: 40px;">Initiate protocol and secure your digital fortress.</p>
+          <a href="contact-us.html" class="btn" style="background: #0a0a0a; color: #fff; padding: 20px 50px; border-radius: 8px; font-size: 22px; font-weight: 700; letter-spacing: 1px;">Initiate Audit</a>
+      </div>
+  </section>
+
+  <footer style="background-color: #050505; text-align: center; padding: 40px 0; border-top: 2px solid #222;">
+    <div class="container">
+      <p style="color: #666; font-size: 18px; margin: 0;">Copyright © 2026 AESURUS. Secure. Scale. Succeed. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/custom.js"></script>
+  <script>
+      $(document).ready(function() {
+          // Removes any broken template clicks and forces our own
+          $('.menu-trigger').off('click').on('click', function(e) {
+              e.preventDefault();
+              $(this).toggleClass('active'); 
+              $('.header-area .main-nav .nav').slideToggle(300); 
+          });
+
+          // Optional: Closes the menu if they click a link inside it
+          $('.header-area .main-nav .nav li a').on('click', function() {
+              if (window.innerWidth < 992) {
+                  $('.menu-trigger').removeClass('active');
+                  $('.header-area .main-nav .nav').slideUp(300);
+              }
+          });
+      });
+  </script>
+  <script>
+      const container = document.getElementById('scrollContainer');
+      const lid = document.getElementById('vaultLid');
+      const screen = document.getElementById('vaultScreen');
+      const scene = document.getElementById('vaultScene');
+      const narrative = document.getElementById('narrativeText');
+      
+      const cloudSeq = document.getElementById('cloudSequence');
+      const cloudIcon = document.getElementById('cloudIcon');
+      const cloudText = document.getElementById('cloudText');
+      
+      const enclaveSeq = document.getElementById('enclaveSequence');
+      const spec1 = document.getElementById('spec1');
+      const spec2 = document.getElementById('spec2');
+      const spec3 = document.getElementById('spec3');
+
+      window.addEventListener('scroll', () => {
+          if(!container) return; 
+          
+          const rect = container.getBoundingClientRect();
+          let scrollPercent = -rect.top / (rect.height - window.innerHeight);
+          scrollPercent = Math.min(Math.max(scrollPercent, 0), 1);
+
+          if(scrollPercent <= 0 && rect.top > window.innerHeight) return;
+          if(scrollPercent >= 1 && rect.bottom < 0) return;
+
+          // Camera Zoom is cleanly disabled, laptop will stay stationary!
+
+          // Corrected Laptop Hinge Math
+          // Closed is -180deg (flat against keyboard). Open is -65deg (leaned back slightly).
+          let lidAngle = -180; 
+          if (scrollPercent < 0.25) {
+              lidAngle = -180 + ((scrollPercent / 0.25) * 115);
+          } else {
+              lidAngle = -65; 
+          }
+          lid.style.transform = `translateY(-100%) rotateX(${lidAngle}deg)`;
+
+          narrative.style.opacity = scrollPercent > 0.05 ? '0' : '1';
+
+          if (scrollPercent > 0.20) {
+              screen.style.boxShadow = 'inset 0 0 80px rgba(255,255,255,0.05)';
+          } else {
+              screen.style.boxShadow = 'none';
+          }
+
+          if (scrollPercent > 0.25 && scrollPercent < 0.45) {
+              cloudSeq.style.opacity = '1';
+              if (scrollPercent > 0.35) {
+                  cloudIcon.style.color = '#ff4500'; 
+                  cloudText.style.color = '#ff4500';
+                  cloudText.innerText = "THREAT DETECTED. SEVERING CONNECTION.";
+                  screen.style.boxShadow = 'inset 0 0 150px rgba(255, 69, 0, 0.2)'; 
+              } else {
+                  cloudIcon.style.color = '#9ca3af'; 
+                  cloudText.style.color = '#9ca3af';
+                  cloudText.innerText = "Connecting to Public Cloud...";
+                  screen.style.boxShadow = 'inset 0 0 80px rgba(255,255,255,0.05)';
+              }
+          } else {
+              cloudSeq.style.opacity = '0';
+          }
+
+          if (scrollPercent >= 0.45) {
+              enclaveSeq.style.opacity = '1';
+              screen.style.boxShadow = 'inset 0 0 150px rgba(13, 110, 253, 0.3)'; 
+          } else {
+              enclaveSeq.style.opacity = '0';
+          }
+
+          if (scrollPercent > 0.50) { spec1.style.opacity = '1'; spec1.style.transform = 'translateY(0)'; } 
+          else { spec1.style.opacity = '0'; spec1.style.transform = 'translateY(30px)'; }
+
+          if (scrollPercent > 0.65) { spec2.style.opacity = '1'; spec2.style.transform = 'translateY(0)'; } 
+          else { spec2.style.opacity = '0'; spec2.style.transform = 'translateY(30px)'; }
+
+          if (scrollPercent > 0.80) { spec3.style.opacity = '1'; spec3.style.transform = 'translateY(0)'; } 
+          else { spec3.style.opacity = '0'; spec3.style.transform = 'translateY(30px)'; }
+      });
+  </script>
+</body>
+</html>

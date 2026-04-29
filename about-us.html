@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="AESURUS - About Our Elite Enterprise Security Team">
+    <meta name="author" content="AESURUS">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>AESURUS | The Command Team</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-574-mexant.css">
+    
+    <link rel="stylesheet" href="assets/css/aesurus-theme.css">
+
+    <style>
+        body { background-color: #f8fafc; color: #333; overflow-x: hidden; }
+
+        /* --- THE MANIFESTO HERO --- */
+        .about-hero {
+            position: relative; height: 70vh; min-height: 600px; background-color: #050505; 
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+            border-bottom: 3px solid #ff4500;
+        }
+        /* Tactical Scanline Background */
+        .scanlines {
+            position: absolute; inset: 0; z-index: 1; pointer-events: none;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+        }
+        .hero-glow-core {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 800px; height: 800px; background: radial-gradient(circle, rgba(13, 110, 253, 0.15) 0%, transparent 60%);
+            filter: blur(40px); z-index: 0;
+        }
+        
+        .about-hero-content { position: relative; z-index: 10; text-align: center; max-width: 1000px; padding: 0 20px; }
+        .about-hero-tag { color: #ff4500; font-size: 20px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; display: block; }
+        .about-hero-title { color: #fff; font-size: 72px; font-weight: 900; letter-spacing: 1px; margin-bottom: 25px; line-height: 1.1; text-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .about-hero-subtitle { color: #d1d5db; font-size: 24px; font-weight: 300; line-height: 1.6; max-width: 800px; margin: 0 auto; }
+
+        /* --- ORIGIN PROTOCOL (OUR STORY) --- */
+        .origin-section { padding: 120px 0; background: #fff; position: relative; }
+        .origin-content h6 { color: #0d6efd; font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
+        .origin-content h2 { color: #0a0a0a; font-size: 48px; font-weight: 800; margin-bottom: 30px; line-height: 1.2; }
+        .origin-content p { font-size: 20px; color: #4b5563; line-height: 1.8; margin-bottom: 25px; }
+        
+        .origin-visual { position: relative; height: 100%; min-height: 500px; border-radius: 16px; background: #050505; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.15); border: 1px solid #222;}
+        .origin-visual i { font-size: 200px; color: #111; position: absolute; z-index: 1; }
+        .visual-overlay-box { position: relative; z-index: 2; background: rgba(13, 110, 253, 0.1); border: 1px solid rgba(13, 110, 253, 0.3); backdrop-filter: blur(10px); padding: 40px; border-radius: 12px; text-align: center; max-width: 80%; }
+        .visual-overlay-box h4 { color: #fff; font-size: 28px; font-weight: 800; margin-bottom: 10px; }
+        .visual-overlay-box p { color: #0d6efd; font-size: 18px; margin: 0; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- TACTICAL DIRECTIVES (CORE VALUES) --- */
+        .directives-section { padding: 120px 0; background: #0a0a0a; color: #fff; border-top: 1px solid #222; }
+        .directives-header { text-align: center; margin-bottom: 70px; }
+        .directives-header h6 { color: #ff4500; font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
+        .directives-header h2 { font-size: 52px; font-weight: 800; }
+        
+        .directive-card { background: #111; border: 1px solid #222; padding: 50px 40px; border-radius: 16px; height: 100%; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .directive-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: #333; transition: all 0.3s ease; }
+        .directive-card:hover { transform: translateY(-10px); border-color: #0d6efd; box-shadow: 0 20px 40px rgba(13, 110, 253, 0.1); }
+        .directive-card:hover::before { background: #0d6efd; }
+        
+        .d-num { font-family: monospace; font-size: 60px; font-weight: 900; color: #222; position: absolute; top: 20px; right: 30px; line-height: 1; transition: color 0.3s; }
+        .directive-card:hover .d-num { color: rgba(13, 110, 253, 0.2); }
+        .directive-card h4 { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 20px; position: relative; z-index: 2; margin-top: 20px; }
+        .directive-card p { font-size: 18px; color: #a1a1aa; line-height: 1.7; position: relative; z-index: 2; margin: 0; }
+
+        /* --- THE COMMAND ROSTER (LEADERSHIP) --- */
+        .roster-section { padding: 120px 0; background: #f8fafc; }
+        .roster-header { text-align: center; margin-bottom: 70px; }
+        .roster-header h6 { color: #0d6efd; font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
+        .roster-header h2 { font-size: 52px; font-weight: 800; color: #0a0a0a; }
+
+        .leader-card { background: #fff; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: all 0.3s ease; }
+        .leader-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .leader-image { width: 100%; height: 350px; background: #e2e8f0; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        /* Placeholder styling for images */
+        .leader-image i { font-size: 100px; color: #cbd5e1; }
+        .leader-info { padding: 30px; text-align: center; border-top: 4px solid #0d6efd; }
+        .leader-info h4 { font-size: 26px; font-weight: 800; color: #0a0a0a; margin-bottom: 5px; }
+        .leader-info span { display: block; font-size: 16px; color: #ff4500; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+        .leader-info p { font-size: 16px; color: #64748b; margin: 0; line-height: 1.6; }
+
+        /* --- GLOBAL FOOTPRINT / LOCAL SOVEREIGNTY --- */
+        .global-section { padding: 120px 0; background: #050505; color: #fff; position: relative; overflow: hidden; border-top: 1px solid #222;}
+        .world-map-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120%; opacity: 0.05; font-size: 800px; color: #fff; text-align: center; pointer-events: none; }
+        .global-content { position: relative; z-index: 10; text-align: center; max-width: 900px; margin: 0 auto; }
+        .global-content h2 { font-size: 48px; font-weight: 800; margin-bottom: 30px; }
+        .global-content p { font-size: 22px; color: #d1d5db; line-height: 1.8; margin-bottom: 40px; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .origin-visual { margin-top: 50px; }
+            .about-hero-title { font-size: 56px; }
+        }
+        @media (max-width: 767px) {
+            .about-hero-title { font-size: 42px; }
+            .about-hero-subtitle { font-size: 20px; }
+            .directives-header h2, .roster-header h2, .global-content h2 { font-size: 40px; }
+            .origin-content h2 { font-size: 38px; }
+            .leader-image { height: 300px; }
+        }
+    </style>
+  </head>
+
+<body>
+
+ <header class="header-area header-sticky background-header" style="background-color: #0a0a0a !important;">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <a href="index.html" class="logo">
+                          <div style="display: flex; align-items: center; height: 110px;">
+                              <img src="assets/images/logo-blue.png" alt="AESURUS Logo" class="header-logo" style="max-height: 65px; border-radius: 8px;">
+                          </div>
+                      </a>
+                      <ul class="nav">
+                          <li><a href="index.html" class="active">Home</a></li>
+                          <li><a href="our-services.html">Services</a></li>
+                          <li><a href="cybersecurity.html">Cybersecurity</a></li>
+                          <li><a href="the-enclave.html">The Enclave</a></li>
+                          <li><a href="contact-us.html">Initiate Protocol</a></li> 
+                      </ul>        
+                      <a class='menu-trigger'><span>Menu</span></a>
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+  <div class="about-hero">
+      <div class="hero-glow-core"></div>
+      <div class="scanlines"></div>
+      <div class="about-hero-content">
+          <span class="about-hero-tag">We Are AESURUS</span>
+          <h1 class="about-hero-title">The Architects of <br>Digital Resilience.</h1>
+          <p class="about-hero-subtitle">We do not provide standard IT support. We design, deploy, and defend elite enterprise architectures to ensure your legacy survives the unpredictable.</p>
+      </div>
+  </div>
+
+  <section class="origin-section">
+      <div class="container">
+          <div class="row align-items-center">
+              <div class="col-lg-6 pr-lg-5 origin-content">
+                  <h6>Origin Protocol</h6>
+                  <h2>Born from Necessity. Forged in Defense.</h2>
+                  <p>AESURUS was founded on a singular, undeniable reality: standard IT practices are failing modern enterprises. We watched as traditional support providers were outmaneuvered by advanced ransomware, leaving businesses crippled and data compromised.</p>
+                  <p>We realized that to protect an enterprise today, you cannot act like an IT vendor. You must act like a private digital military. We combined elite cloud architecture with military-grade threat hunting to create an ecosystem where compromise is mathematically impossible.</p>
+                  <p>Based in Kingston, Jamaica, we deliver global, Tier-1 cybersecurity and infrastructure management, ensuring uncompromising alignment with both local data sovereignty laws (JDPA) and international security frameworks.</p>
+              </div>
+              <div class="col-lg-6 pl-lg-4">
+                  <div class="origin-visual">
+                      <i class="fas fa-shield-alt"></i>
+                      <div class="visual-overlay-box">
+                          <h4>AESURUS</h4>
+                          <p>Est. Command Center</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="directives-section">
+      <div class="container">
+          <div class="directives-header">
+              <h6>The AESURUS Standard</h6>
+              <h2 style="color:white;">Our Tactical Directives</h2>
+          </div>
+          <div class="row g-4">
+              <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="directive-card">
+                      <div class="d-num">01</div>
+                      <h4>Paranoia is <br>Our Baseline.</h4>
+                      <p>We operate exclusively on a Zero-Trust architecture. We assume the network is already hostile, the perimeter is breached, and every access request is a potential threat until cryptographically proven otherwise.</p>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="directive-card">
+                      <div class="d-num">02</div>
+                      <h4>Physics Over <br>Software.</h4>
+                      <p>While competitors rely entirely on software firewalls, we engineer physical resilience. Through The Enclave protocol and immutable backups, we physically isolate your data, rendering remote exploitation impossible.</p>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="directive-card">
+                      <div class="d-num">03</div>
+                      <h4>Uncompromising <br>Execution.</h4>
+                      <p>We do not guess; we architect. Every cloud migration, endpoint deployment, and compliance audit is executed with military precision to ensure zero operational downtime and maximum operational efficiency.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="roster-section">
+      <div class="container">
+          <div class="roster-header">
+              <h6>The Vanguard</h6>
+              <h2>Command Roster</h2>
+          </div>
+          
+          <div class="row g-4 justify-content-center">
+              
+              <div class="col-lg-5 col-md-6 mb-4">
+                  <div class="leader-card">
+                      <div class="leader-image">
+                          <i class="fas fa-user-tie"></i>
+                      </div>
+                      <div class="leader-info">
+                          <h4>Brian Grant</h4>
+                          <span>Chief Executive Officer</span>
+                          <p>Leading the strategic vision of AESURUS. Brian ensures our architecture scales seamlessly alongside our clients' enterprise growth and dictates our uncompromising zero-trust philosophy.</p>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="col-lg-5 col-md-6 mb-4">
+                  <div class="leader-card">
+                      <div class="leader-image">
+                          <i class="fas fa-user-shield"></i>
+                      </div>
+                      <div class="leader-info">
+                          <h4>Donali Grant</h4>
+                          <span>Chief Operating Officer</span>
+                          <p>Commanding tactical execution and daily operations. Donali oversees the deployment of the AESURUS Enclave and ensures flawless, military-grade service delivery across all global endpoints.</p>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </section>
+
+  <section class="global-section">
+      <i class="fas fa-globe-americas world-map-bg"></i>
+      <div class="container">
+          <div class="global-content">
+              <h6 style="color: #ff4500; font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;">Global Scale. Local Sovereignty.</h6>
+              <h2 style="color: white;" >Defending Networks Worldwide.</h2>
+              <p>While our command center is anchored in Jamaica, ensuring strict adherence to the Jamaica Data Protection Act (JDPA) for regional enterprises, our capabilities span the globe. Our X-Ops analysts monitor networks and respond to cyber warfare threats across international jurisdictions 24/7/365.</p>
+              <a href="contact-us.html" class="btn" style="background: #0d6efd; color: #fff; padding: 18px 40px; border-radius: 5px; font-size: 20px; font-weight: 700; text-transform: uppercase; margin-top: 20px;">Engage Our Team</a>
+          </div>
+      </div>
+  </section>
+
+  <footer style="background-color: #050505; text-align: center; padding: 40px 0; border-top: 2px solid #222;">
+    <div class="container">
+      <p style="color: #666; font-size: 18px; margin: 0;">Copyright © 2026 AESURUS. Secure. Scale. Succeed. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/custom.js"></script>
+<script>
+      $(document).ready(function() {
+          // Removes any broken template clicks and forces our own
+          $('.menu-trigger').off('click').on('click', function(e) {
+              e.preventDefault();
+              $(this).toggleClass('active'); // Animates the burger icon
+              $('.header-area .main-nav .nav').slideToggle(300); // Slides the menu down
+          });
+
+          // Optional: Closes the menu if they click a link inside it
+          $('.header-area .main-nav .nav li a').on('click', function() {
+              if (window.innerWidth < 992) {
+                  $('.menu-trigger').removeClass('active');
+                  $('.header-area .main-nav .nav').slideUp(300);
+              }
+          });
+      });
+  </script>
+</body>
+</html>

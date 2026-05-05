@@ -41,14 +41,41 @@
             .mobile-enclave-fallback { display: block; }
         }
 
-        /* 1. The Main Scene Wrapper */
+       /* 1. The Main Scene Wrapper */
+       /* --- NEW ENCLAVE HERO SECTION --- */
+        .enclave-hero {
+            position: relative; height: 80vh; min-height: 600px; background-color: #050505; 
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+            border-bottom: 2px solid #222;
+        }
+        .hero-bg-lines {
+            position: absolute; inset: 0; opacity: 0.15;
+            background: repeating-linear-gradient( 45deg, transparent, transparent 10px, #0d6efd 10px, #0d6efd 11px );
+        }
+        .enclave-hero-content { position: relative; z-index: 10; text-align: center; max-width: 900px; padding: 0 20px; }
+        .enclave-hero-title { color: #fff; font-size: 64px; font-weight: 900; letter-spacing: 1px; margin-bottom: 20px; text-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .enclave-hero-subtitle { color: #d1d5db; font-size: 22px; font-weight: 300; line-height: 1.6; }
+        
+        .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); color: #0d6efd; font-size: 30px; animation: bounce 2s infinite; }
+        @keyframes bounce { 
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); } 
+            40% { transform: translateY(-20px) translateX(-50%); } 
+            60% { transform: translateY(-10px) translateX(-50%); } 
+        }
+
+        @media (max-width: 767px) {
+            .enclave-hero-title { font-size: 42px; }
+            .enclave-hero-subtitle { font-size: 18px; }
+            .enclave-hero { height: 60vh; min-height: 400px; }
+        }
         .vault-scene { 
             perspective: 3000px; 
             width: 1200px; 
             height: 900px; 
             position: relative; 
-            margin-top: 50vh; 
-            transform: scale(0.9); 
+            /* Pushes the base down so the lid has room to open */
+            margin-top: 20vh; 
+            transform: scale(0.75); 
             will-change: transform;
         }
 
@@ -166,11 +193,15 @@
         .faq-content { padding: 0 30px 30px 30px; font-size: 20px; color: #4b5563; line-height: 1.8; border-top: 1px solid #e2e8f0; margin-top: 10px; padding-top: 20px; }
 
         /* Responsive Overrides */
-        @media (max-width: 1500px) { .vault-scene { transform: scale(0.8); } }
-        @media (max-width: 1200px) { .vault-scene { transform: scale(0.65); } }
+        /* Responsive Overrides */
+        /* Targets short laptop screens and scales the laptop to fit the height */
+        @media (max-height: 850px) and (min-width: 992px) { .vault-scene { transform: scale(0.60); margin-top: 15vh; } }
+        @media (max-height: 700px) and (min-width: 992px) { .vault-scene { transform: scale(0.50); margin-top: 10vh; } }
+        
+        @media (max-width: 1500px) { .vault-scene { transform: scale(0.75); } }
+        @media (max-width: 1200px) { .vault-scene { transform: scale(0.60); } }
         @media (max-width: 992px) { 
-            .vault-scene { transform: scale(0.5); }
-            .narrative-text { font-size: 36px; top: 8%; }
+            .vault-scene { transform: scale(0.5); margin-top: 10vh; }
             .spec-desc { font-size: 32px; }
             .enclave-section h2 { font-size: 42px; }
             .specs-table td { font-size: 18px; display: block; width: 100%; padding: 15px 0 5px 0;}
@@ -178,20 +209,19 @@
             .specs-table tr { border: none; }
         }
         @media (max-width: 767px) { 
-            .vault-scene { transform: scale(0.28); }
-            .narrative-text { font-size: 24px; }
+            .vault-scene { transform: scale(0.28); margin-top: 5vh; }
             .cloud-icon { font-size: 100px; }
             .cloud-text { font-size: 24px; }
             .enclave-section { padding: 80px 0; }
             .mission-inner { padding: 40px 20px; }
             summary { font-size: 18px; padding: 20px; }
         }
-    </style>
+            </style>
   </head>
 
 <body>
 
-<header class="header-area header-sticky background-header" style="background-color: #0a0a0a !important;">
+  <header class="header-area header-sticky background-header" style="background-color: #0a0a0a !important;">
       <div class="container">
           <div class="row">
               <div class="col-12">
@@ -202,11 +232,10 @@
                           </div>
                       </a>
                       <ul class="nav">
-                          <li><a href="index.html" class="active">Home</a></li>
+                          <li><a href="index.html">Home</a></li>
                           <li><a href="our-services.html">Services</a></li>
                           <li><a href="cybersecurity.html">Cybersecurity</a></li>
-                          <li><a href="the-enclave.html">The Enclave</a></li>
-                          <li><a href="about-us.html">About Us</a></li> 
+                          <li><a href="the-enclave.html" class="active">The Enclave</a></li>
                           <li><a href="contact-us.html">Initiate Protocol</a></li> 
                       </ul>        
                       <a class='menu-trigger'><span>Menu</span></a>
@@ -216,12 +245,18 @@
       </div>
   </header>
   <div class="scrollytelling-container" id="scrollContainer">
+    <!-- 1. ENCLAVE HERO SECTION -->
+  <div class="enclave-hero">
+      <div class="hero-bg-lines"></div>
+      <div class="enclave-hero-content">
+          <h6 style="color: #0d6efd; font-size: 18px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px;">Data Sovereignty Achieved</h6>
+          <h1 class="enclave-hero-title">The Enclave Protocol.</h1>
+          <p class="enclave-hero-subtitle">Standard cloud security is failing modern enterprises. Welcome to your 100% air-gapped, zero-trust digital fortress. Scroll down to initialize the architecture.</p>
+      </div>
+      <i class="fas fa-chevron-down scroll-indicator"></i>
+  </div>
       <div class="sticky-stage">
-          <div class="narrative-text" id="narrativeText">
-              Standard Cloud Security is Failing. <br>
-              <span class="narrative-subtext">Scroll to deploy The Enclave.</span>
-          </div>
-
+          
           <div class="vault-scene" id="vaultScene">
               <div class="vault-base-chassis">
                   <div class="vault-base-bottom"></div>
@@ -480,7 +515,6 @@
       const lid = document.getElementById('vaultLid');
       const screen = document.getElementById('vaultScreen');
       const scene = document.getElementById('vaultScene');
-      const narrative = document.getElementById('narrativeText');
       
       const cloudSeq = document.getElementById('cloudSequence');
       const cloudIcon = document.getElementById('cloudIcon');
@@ -501,10 +535,7 @@
           if(scrollPercent <= 0 && rect.top > window.innerHeight) return;
           if(scrollPercent >= 1 && rect.bottom < 0) return;
 
-          // Camera Zoom is cleanly disabled, laptop will stay stationary!
-
-          // Corrected Laptop Hinge Math
-          // Closed is -180deg (flat against keyboard). Open is -65deg (leaned back slightly).
+          // Laptop Hinge Math
           let lidAngle = -180; 
           if (scrollPercent < 0.25) {
               lidAngle = -180 + ((scrollPercent / 0.25) * 115);
@@ -513,14 +544,14 @@
           }
           lid.style.transform = `translateY(-100%) rotateX(${lidAngle}deg)`;
 
-          narrative.style.opacity = scrollPercent > 0.05 ? '0' : '1';
-
+          // Screen Glow Effects
           if (scrollPercent > 0.20) {
               screen.style.boxShadow = 'inset 0 0 80px rgba(255,255,255,0.05)';
           } else {
               screen.style.boxShadow = 'none';
           }
 
+          // Sequence 1: Cloud Connection
           if (scrollPercent > 0.25 && scrollPercent < 0.45) {
               cloudSeq.style.opacity = '1';
               if (scrollPercent > 0.35) {
@@ -538,6 +569,7 @@
               cloudSeq.style.opacity = '0';
           }
 
+          // Sequence 2: The Enclave Bootup
           if (scrollPercent >= 0.45) {
               enclaveSeq.style.opacity = '1';
               screen.style.boxShadow = 'inset 0 0 150px rgba(13, 110, 253, 0.3)'; 
@@ -545,6 +577,7 @@
               enclaveSeq.style.opacity = '0';
           }
 
+          // Sequence 3: Staggered Text Animations
           if (scrollPercent > 0.50) { spec1.style.opacity = '1'; spec1.style.transform = 'translateY(0)'; } 
           else { spec1.style.opacity = '0'; spec1.style.transform = 'translateY(30px)'; }
 
